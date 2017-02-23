@@ -1,5 +1,5 @@
 {
-  "name": "vue-express-mongo-boilerplate",
+  "name": "ExpressVuePug",
   "version": "0.9.0",
   "title": "Vue-Express-Mongo BoilerPlate",
   "description": "Express NodeJS application server boilerplate with Mongo and VueJS",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:icebob/vue-express-mongo-boilerplate.git"
+    "url": "git@github.com:hseirafi/expressVuePug.git"
   },
   "keywords": [
     "boilerplate",
@@ -39,7 +39,7 @@
   "config": {
     "dbName": "boilerplate"
   },
-  "author": "Icebob",
+  "author": "hoss",
   "license": "MIT",
   "dependencies": {
     "agenda": "0.9.0",
