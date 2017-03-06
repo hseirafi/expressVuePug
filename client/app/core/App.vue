@@ -25,7 +25,7 @@
 
 		/**
 		 * Create websocket connection to the root namespace
-		 */		
+		 */
 		//mixins: [ MixinsIO() ],
 
 		/**
@@ -38,7 +38,7 @@
 
 		/**
 		 * Create app data object
-		 * 
+		 *
 		 * TODO: move to vuex state
 		 */
 		data() {
@@ -93,11 +93,11 @@
 			update: function(vm) {
 				if (vm == null)
 					return;
-				
+
 				let i = vm._watchers.length;
 				while (i--)
 					vm._watchers[i].update(true);
-				
+
 				let children = vm.$children;
 				i = children.length;
 				while (i--)
@@ -121,8 +121,9 @@
 			// debug
 			window.postService = new Service("posts", this);
 			window.counterService = new Service("counter", this);
+			window.routeoneService = new Service("routeone", this);
 			window.deviceService = new Service("device", this);
-			
+
 		}
 	};
 </script>

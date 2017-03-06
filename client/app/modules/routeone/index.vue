@@ -1,7 +1,6 @@
 <template lang="pug">
 	.container
 		h2.title {{ "Demo" | i18n }}
-
 		h3 {{ count }}
 		button.button.success(@click="inc")
 			span.icon
@@ -25,7 +24,7 @@
 		/**
 		 * Computed getters
 		 */
-		 computed: mapGetters("counter", [
+		 computed: mapGetters("routeone", [
 			 "count"
 		 ]),
 
@@ -36,7 +35,7 @@
 			/**
 			 * Actions from store
 			 */
-			...mapActions("counter", [
+			...mapActions("routeone", [
 				"getValue",
 				"increment",
 				"decrement",
@@ -44,14 +43,14 @@
 			]),
 
 			/**
-			 * Increment counter
+			 * Increment routeone
 			 */
 			inc() {
 				this.increment() ;
 			},
 
 			/**
-			 * Decrement counter
+			 * Decrement routeone
 			 */
 			dec() {
 				this.decrement();
@@ -63,14 +62,14 @@
 		 */
 		socket: {
 
-			prefix: "/counter/",
+			prefix: "/routeone/",
 
-			//namespace: "/counter",
+			//namespace: "/routeone",
 
 			events: {
 				/**
 				 * Counter value is changed
-				 * @param  {Number} msg Value of counter
+				 * @param  {Number} msg Value of routeone
 				 */
 				changed(res) {
 					console.log("Counter changed to " + res.data + (res.user ? " by " + res.user.fullName : ""));
@@ -80,9 +79,9 @@
 		},
 
 		created() {
-			this.$service = new Service("counter", this);
+			this.$service = new Service("routeone", this);
 
-			// Get the latest value of counter
+			// Get the latest value of routeone
 			this.getValue();
 		}
 	};

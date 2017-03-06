@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-
+client_id.json
 # Runtime data
 pids
 *.pid

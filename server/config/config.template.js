@@ -4,7 +4,7 @@ let path = require("path");
 let pkg = require("./package.json");
 
 module.exports = {
-	
+
 	// Secret for ID hashing
 	hashSecret: "{{hashSecret}}",
 
@@ -13,13 +13,13 @@ module.exports = {
 
 	// Application settings
 	app: {
-		//title: "VEM APP",
-		//version: "1.0.0",
-		//description: "This is my boilerplate web app",
-		//keywords: "boilerplate, starter, webapp",
-		//url: "http://localhost:3000/",
-		//googleAnalyticsID: 'UA-xxxxx-x',
-		//contactEmail: "hello@vem-app.com"
+		title: "VEM APP",
+		version: "1.0.0",
+		description: "This is my boilerplate web app",
+		keywords: "boilerplate, starter, webapp",
+		url: "http://localhost:3000/",
+		googleAnalyticsID: 'UA-xxxxx-x',
+		contactEmail: "hello@vem-app.com"
 	},
 
 	// ip: process.env.NODE_IP || "0.0.0.0",
@@ -42,7 +42,7 @@ module.exports = {
 		enabled: false,
 		uri: process.env.REDIS_URI || "redis://localhost:6379",
 		options: null
-	},	
+	},
 
 	// Mail sending settings
 	mailer: {
@@ -88,14 +88,14 @@ module.exports = {
 	features: {
 		disableSignUp: false,
 		verificationRequired: true
-	},	
+	},
 
 	// Social authentication (OAuth) keys
 	authKeys: {
 
 		google: {
-			clientID: null,
-			clientSecret: null
+			clientID: '932217963551-a829s5qnj3k62vr4f0q5vhd7o6ulc0f1.apps.googleusercontent.com',
+			clientSecret: 'dt9hgkT87H54AHcqFL7zo0LK'
 		},
 
 		facebook: {
@@ -111,12 +111,12 @@ module.exports = {
 		twitter: {
 			clientID: null,
 			clientSecret: null
-		}		
+		}
 	},
 
 	// Logging settings
 	logging: {
-		
+
 		console: {
 			// level: "debug"
 		},
@@ -152,17 +152,17 @@ module.exports = {
 			token: null,
 			subdomain: null
 		},
-		
+
 		logsene: {
 			enabled: false,
 			token: null
 		},
-		
+
 		logzio: {
 			enabled: false,
 			token: null
 		}
-		
+
 	}
 
 };

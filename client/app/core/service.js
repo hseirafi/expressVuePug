@@ -18,13 +18,13 @@ const apolloClient = new ApolloClient({
 });
 
 export default class Service {
-	
+
 	/**
 	 * Creates an instance of Service.
-	 * 
+	 *
 	 * @param {any} namespace	namespace of service (without trailing '/')
 	 * @param {any} vm			vm of parent Vue component. It's need to access to $socket
-	 * 
+	 *
 	 * @memberOf Service
 	 */
 	constructor(namespace, vm, socketOpts) {
@@ -42,11 +42,11 @@ export default class Service {
 
 	/**
 	 * Call a service action via REST API
-	 * 
+	 *
 	 * @param {any} action	name of action
 	 * @param {any} params	parameters to request
 	 * @returns	{Promise}
-	 * 
+	 *
 	 * @memberOf Service
 	 */
 	rest(action, params) {
@@ -71,19 +71,20 @@ export default class Service {
 
 	/**
 	 * Call a service action via Websocket
-	 * 
+	 *
 	 * @param {any} action	name of action
 	 * @param {any} params	parameters to request
 	 * @returns	{Promise}
-	 * 
+	 *
 	 * @memberOf Service
 	 */
 	emit(action, params) {
+		console.log('action: '+ action + ' params: '+ params + 'namespace ' + this.namespace );
 		return new Promise((resolve, reject) => {
 
 			this.socket.emit(`/${this.namespace}/${action}`, params, (response) => {
 
-				//console.log("Response: ", response);
+				console.log("Response: ", response);
 				if (response && response.status == 200)
 					resolve(response.data);
 				else {
@@ -91,23 +92,23 @@ export default class Service {
 					reject(response.error);
 				}
 			});
-			
+
 		});
 	}
 
-	/* 
+	/*
 		Example:
 			window.counterService.query(gql`query($code: String!) {post(code: $code) { code title } }`, { code: "Jk8Pqb5MAN" })
 	*/
 
 	/**
 	 * Call a service action via GraphQL query
-	 * 
+	 *
 	 * @param {any} query 		GraphQL query string
 	 * @param {any} variables 	variables of query
 	 * @param {any} fragments	fragments of query
 	 * @returns {Promise}
-	 * 
+	 *
 	 * @memberOf Service
 	 */
 	query(query, variables, fragments) {
@@ -124,7 +125,7 @@ export default class Service {
 			// console.error("GraphQL query error", error);
 
 			let err = error;
-			if (error.graphQLErrors && error.graphQLErrors.length > 0) 
+			if (error.graphQLErrors && error.graphQLErrors.length > 0)
 				err = error.graphQLErrors[0];
 
 			throw err;
@@ -136,7 +137,7 @@ export default class Service {
 		return apolloClient.watchQuery({
 			query,
 			variables,
-			fragments, 
+			fragments,
 			pollInterval,
 			forceFetch: true,
 		});
@@ -145,12 +146,12 @@ export default class Service {
 
 	/**
 	 * Call a service action via GraphQL mutation
-	 * 
+	 *
 	 * @param {any} mutation 	GraphQL mutation string
 	 * @param {any} variables 	variables of query
 	 * @param {any} fragments	fragments of query
 	 * @returns {Promise}
-	 * 
+	 *
 	 * @memberOf Service
 	 */
 	mutate(mutation, variables, fragments) {
@@ -166,7 +167,7 @@ export default class Service {
 			//console.error("GraphQL query error", error);
 
 			let err = error;
-			if (error.graphQLErrors && error.graphQLErrors.length > 0) 
+			if (error.graphQLErrors && error.graphQLErrors.length > 0)
 				err = error.graphQLErrors[0];
 
 			throw err;
