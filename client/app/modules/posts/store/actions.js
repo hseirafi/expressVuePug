@@ -1,14 +1,15 @@
 import Vue from "vue";
 import toastr from "../../../core/toastr";
 import Service from "../../../core/service";
-import { LOAD, LOAD_MORE, ADD, UPDATE, VOTE, UNVOTE, REMOVE, 
+import { LOAD, LOAD_MORE, ADD, UPDATE, VOTE, UNVOTE, REMOVE,
 	NO_MORE_ITEMS, FETCHING, CHANGE_SORT, CHANGE_VIEWMODE } from "./types";
 
 export const NAMESPACE	 	= "/api/posts";
 
-let service = new Service("posts"); 
+let service = new Service("posts");
 
 export const getRows = function ({commit, state}, loadMore) {
+	console.log('state state for sort', state);
 	commit(FETCHING, true);
 	return service.rest("find", { filter: state.viewMode, sort: state.sort, limit: 10, offset: state.offset }).then((data) => {
 		if (data.length == 0)
@@ -18,7 +19,7 @@ export const getRows = function ({commit, state}, loadMore) {
 	}).catch((err) => {
 		toastr.error(err.message);
 	}).then(() => {
-		commit(FETCHING, false);		
+		commit(FETCHING, false);
 	});
 };
 
