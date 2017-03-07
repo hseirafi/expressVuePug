@@ -1,6 +1,6 @@
 <template lang="pug">
 	.container
-		h2.title {{ "Demo" | i18n }}
+		h2.title {{ "Incrementing counter with sever listening through socket io " | i18n }}
 		h3 {{ count }}
 		button.button.success(@click="inc")
 			span.icon
@@ -12,11 +12,20 @@
 			span
 				i.fa.fa-arrow-up
 			span {{ "Decrement" | i18n }}
+		parallax( :fixed="true")
+			img(src="https://apertureless.github.io/vue-parallax/static/img/pexels-photo-196416.jpeg"  alt="very cool bg")
 
 </template>
 
 <script>
+	import Parallax from 'vue-parallaxy';
 	import { mapActions, mapGetters } from "vuex";
+
+
+
+
+
+
 
 	import Service from "../../core/service";
 
@@ -24,6 +33,9 @@
 		/**
 		 * Computed getters
 		 */
+		components:{
+		    Parallax
+		},
 		 computed: mapGetters("routeone", [
 			 "count"
 		 ]),
@@ -88,5 +100,8 @@
 
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass" language="sass" scoped>
+	h2.title{
+		margin:auto;
+	}
 </style>
