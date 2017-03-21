@@ -8,7 +8,7 @@
     "build": "webpack --progress --colors --config build/webpack.prod.config.js",
     "build:server": "webpack --progress --colors --config build/webpack.server.config.js",
     "dev": "cross-env NODE_ENV=development nodemon --debug",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=production node server/bundle.js",
     "start:bundle": "cross-env NODE_ENV=production node server/bundle.js",
     "start:cluster": "cross-env NODE_ENV=production node cluster.js",
     "test:unit": "cross-env NODE_ENV=test mocha --require babel-core/register --reporter spec tests/unit",

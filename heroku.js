@@ -1,15 +1,18 @@
-/**
-	* Created by hoss on 3/12/2017.
-	*/
 const entries = require("object.entries");
 const fs = require("fs-extra");
 const Task = require("data.task");
+const fantasy = require("folktale");
 const path = require("path");
+
+
+
+
+
+
 
 const makeDir = (filename) =>
 	new Task((rej, res) =>
-	
-		fs.mkdir(filename, (err, contents) =>
+		fs.mkdirp(filename, (err, contents) =>
 			err ? rej(err) : res(contents)));
 
 const readFile = (filename, enc) =>
@@ -45,20 +48,25 @@ if (!Object.entries) {
 const locations = Object.entries(dirCopy);
 
 const app =
-	makeDir(__dirname + "/heroku")
-		.chain(content => makeDir(__dirname + "/heroku/server"))
+		makeDir(__dirname + "/heroku/server")
 		.chain(content => readFile("config.js", "utf-8"))
 		.map(contents => contents.replace(regInit, matched => strReplaceObj[matched]))
 		.chain(contents => writeFile("heroku/config.js", contents))
-		.chain(contents => readFile("config.js", "utf-8"))
-		.map(contents => contents.replace("4", "9"))
-		.chain(contents => writeFile("heroku/server/config2.js", contents))
+		.chain(contents => readFile("package.json", "utf-8"))
+		.map(contents => contents.replace("cross-env NODE_ENV=production node server/index.js", "cross-env NODE_ENV=production node server/bundle.js"))
+		.chain(contents => writeFile("heroku/package.json", contents))
 		.map(content => locations.forEach(([origin, base]) => fs.copy(origin, base)));
-
-app.fork(e => console.log(e),
-	x => console.log("success"));
-
+		app.fork(e => console.log(e),
+			x => console.log("success"));
 
 
+if (fs.exists("/heroku/.gitignore")){
+	console.log("exists");
+}else{
+	const writeIgnore =
+readFile(".gitignore")
+	.chain(contents => writeFile("heroku/.gitignore", contents));
+	writeIgnore.fork(e=> console.log(e), x=> console.log("success"));
+}
 
 
